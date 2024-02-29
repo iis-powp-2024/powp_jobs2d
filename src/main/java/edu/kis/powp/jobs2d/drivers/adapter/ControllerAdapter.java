@@ -8,10 +8,10 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
 /**
  * driver adapter to drawer with several bugs.
  */
-public class MyAdapter implements Job2dDriver {
+public class ControllerAdapter implements Job2dDriver {
 	private int startX = 0, startY = 0;
 
-	public MyAdapter() {
+	public ControllerAdapter() {
 		super();
 	}
 
@@ -34,6 +34,6 @@ public class MyAdapter implements Job2dDriver {
 
 	@Override
 	public String toString() {
-		return "@Q!$!@$!#@$(*#@&Q(%^*#@";
+		return "Working Driver";
 	}
 }
