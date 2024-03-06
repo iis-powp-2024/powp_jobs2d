@@ -6,14 +6,18 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 
+import java.util.IllformedLocaleException;
+
 /**
  * driver adapter to drawer with several bugs.
  */
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver {
     private int startX = 0, startY = 0;
+    private final ILine lineType;
 
-    public LineDrawerAdapter() {
+    public LineDrawerAdapter(ILine line) {
         super();
+        this.lineType = line;
     }
 
     @Override
@@ -24,7 +28,7 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();
+        ILine line = lineType;
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
 
