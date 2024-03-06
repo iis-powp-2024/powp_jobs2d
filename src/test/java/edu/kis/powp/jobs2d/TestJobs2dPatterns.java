@@ -48,7 +48,10 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new AdapterBoxDraw();
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
 
-		Job2dDriver specialDriver = new LineDrawerAdapter();
+		Job2dDriver dottedDriver = new LineDrawerAdapter(2);
+		DriverFeature.addDriver("Dotted line", dottedDriver);
+
+		Job2dDriver specialDriver = new LineDrawerAdapter(3);
 		DriverFeature.addDriver("Special line", specialDriver);
 
 		DriverFeature.updateDriverInfo();
