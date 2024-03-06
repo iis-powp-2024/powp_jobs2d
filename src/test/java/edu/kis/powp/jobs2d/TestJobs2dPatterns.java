@@ -26,9 +26,13 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+				DriverFeature.getDriverManager(), 1);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), 2);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DrawerAdapter();
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
 
-		Job2dDriver specialLineDriver = new LineDrawerAdapter(application.getFreePanel());
+		Job2dDriver specialLineDriver = new LineDrawerAdapter();
 		DriverFeature.addDriver("Special Line", specialLineDriver);
 
 		DriverFeature.updateDriverInfo();
