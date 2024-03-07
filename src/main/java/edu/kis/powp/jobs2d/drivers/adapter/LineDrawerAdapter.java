@@ -7,10 +7,16 @@ import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.LineFactory;
 
 
+
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver {
     private int startX = 0, startY = 0;
 
-    public LineDrawerAdapter() {super();}
+    private final ILine type;
+
+    public LineDrawerAdapter(ILine line) {
+        super();
+        this.type = line;
+    }
 
     @Override
     public void setPosition(int x, int y) {
@@ -20,7 +26,7 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();
+        ILine line = type;
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
 
