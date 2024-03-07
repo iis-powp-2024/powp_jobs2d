@@ -14,5 +14,9 @@ public class SelectClearPanelOptionListener implements ActionListener {
 		if (driver instanceof ControllerAdapter) {
 			((ControllerAdapter) driver).clearPanel();
 		}
+		// needs to be extracted into some interface cause this hurts my eyes
+		else if (driver instanceof edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter) {
+			((edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter) driver).clearPanel();
+		}
 	}
 }

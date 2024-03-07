@@ -2,8 +2,10 @@ package edu.kis.powp.jobs2d;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.ControllerAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectClearPanelOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
@@ -42,6 +44,21 @@ public class TestJobs2dPatterns {
 
 		Job2dDriver testDriver = new ControllerAdapter(application.getFreePanel());
 		DriverFeature.addDriver("Not so Buggy Simulator", testDriver);
+
+		LineDrawerAdapter testDriver2 = new LineDrawerAdapter(application.getFreePanel());
+		DriverFeature.addDriver("This time slightly Buggy Simulator", testDriver2);
+		application.addComponentMenu(ILine.class, "Line Type");
+		application.addComponentMenuElement(ILine.class, "Basic Line", (ActionEvent e) -> {
+			testDriver2.setLineType("basic"); logger.info("Line type set to: basic");
+		});
+		application.addComponentMenuElement(ILine.class, "Dotted Line", (ActionEvent e) -> {
+			testDriver2.setLineType("dotted"); logger.info("Line type set to: dotted");
+		});
+		application.addComponentMenuElement(ILine.class, "Special Line", (ActionEvent e) -> {
+			testDriver2.setLineType("special"); logger.info("Line type set to: special");
+		});
+
+
 
 		DriverFeature.updateDriverInfo();
 	}
