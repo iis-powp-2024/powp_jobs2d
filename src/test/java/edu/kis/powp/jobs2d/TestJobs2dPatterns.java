@@ -93,10 +93,13 @@ public class TestJobs2dPatterns {
 
 	private static void setLineSupplierIfApplicable(Supplier<ILine> lineSupplier) {
 		Job2dDriver currentDriver = DriverFeature.getDriverManager().getCurrentDriver();
-		if (currentDriver instanceof LineDrawerAdapter) {
-			((LineDrawerAdapter) currentDriver).setLineSupplier(lineSupplier);
-		}
-	}
+        if (!(currentDriver instanceof LineDrawerAdapter)) {
+            logger.warning("Current driver is not a LineDrawerAdapter");
+			return;
+        }
+		((LineDrawerAdapter) currentDriver).setLineSupplier(lineSupplier);
+
+    }
 
 	/**
 	 * Launch the application.
