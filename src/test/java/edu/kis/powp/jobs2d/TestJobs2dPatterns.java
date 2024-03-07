@@ -2,11 +2,13 @@ package edu.kis.powp.jobs2d;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerDriver;
@@ -42,7 +44,6 @@ public class TestJobs2dPatterns {
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DrawerDriver testDriver = new DrawerDriver(DrawerFeature.getDrawerController());
 		LineDrawerAdapter lineDrawerAdapter = new LineDrawerAdapter(DrawerFeature.getDrawerController());
-		lineDrawerAdapter.setLineSupplier(LineFactory::getSpecialLine);
 
 		DriverFeature.addDriver(loggerDriver.toString(), loggerDriver);
 		DriverFeature.addDriver(testDriver.toString(), testDriver);
@@ -67,7 +68,7 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup menu for adjusting logging settings.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupLogger(Application application) {
@@ -81,6 +82,20 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "Severe level",
 				(ActionEvent e) -> logger.setLevel(Level.SEVERE));
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
+	}
+
+	private static void setupCustomLineDrawer(Application application) {
+		application.addComponentMenu(LineDrawerAdapter.class, "Custom Line Driver");
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Basic Line", (ActionEvent e) -> setLineSupplierIfApplicable(LineFactory::getBasicLine));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Dotted Line", (ActionEvent e) -> setLineSupplierIfApplicable(LineFactory::getDottedLine));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Special Line", (ActionEvent e) -> setLineSupplierIfApplicable(LineFactory::getSpecialLine));
+	}
+
+	private static void setLineSupplierIfApplicable(Supplier<ILine> lineSupplier) {
+		Job2dDriver currentDriver = DriverFeature.getDriverManager().getCurrentDriver();
+		if (currentDriver instanceof LineDrawerAdapter) {
+			((LineDrawerAdapter) currentDriver).setLineSupplier(lineSupplier);
+		}
 	}
 
 	/**
@@ -97,6 +112,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				setupCustomLineDrawer(app);
 
 				app.setVisibility(true);
 			}
