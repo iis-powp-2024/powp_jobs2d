@@ -2,20 +2,25 @@ package edu.kis.powp.jobs2d.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
-import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
-	private DriverManager driverManager;
+	private final DriverManager driverManager;
+	private final FiguresJoeScript figuresJoeScript;
 
-	public SelectTestFigureOptionListener(DriverManager driverManager) {
+	public SelectTestFigureOptionListener(DriverManager driverManager, FiguresJoeScript figuresJoeScript) {
 		this.driverManager = driverManager;
+		this.figuresJoeScript = figuresJoeScript;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+		figuresJoeScript.execute(driverManager.getCurrentDriver());
+	}
+
+	public interface FiguresJoeScript {
+		void execute(Job2dDriver driver);
 	}
 }
