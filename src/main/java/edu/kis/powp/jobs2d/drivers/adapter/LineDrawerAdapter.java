@@ -16,7 +16,7 @@ public class LineDrawerAdapter extends LineFactory implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getBasicLine();
+        ILine line = LineFactory.getSpecialLine();
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         setPosition(x, y);
