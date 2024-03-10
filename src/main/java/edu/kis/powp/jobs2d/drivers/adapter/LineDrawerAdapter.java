@@ -11,6 +11,11 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
  */
 public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
+    ILine chosenLine;
+
+    public LineDrawerAdapter(ILine lineType) {
+        this.chosenLine = lineType;
+    }
 
     @Override
     public void setPosition(int x, int y) {
@@ -20,7 +25,7 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();
+        ILine line = chosenLine;
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         setPosition(x, y);
