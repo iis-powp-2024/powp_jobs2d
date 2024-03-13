@@ -9,14 +9,17 @@ import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
+import javax.sound.sampled.Line;
+
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
+	private static LineDrawerAdapter lineDrawer;
 	/**
 	 * Setup test concerning preset figures in context.
 	 * 
@@ -24,9 +27,14 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+				DriverFeature.getDriverManager(), "Figure Joe 1");
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), "Figure Joe 2");
+
+		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
 	}
 
 	/**
@@ -39,8 +47,10 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new DrawerAdapter();
+		Job2dDriver testDriver = new DrawerAdapter(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		lineDrawer = new LineDrawerAdapter(DrawerFeature.getDrawerController());
+		DriverFeature.addDriver("Line selection drawer", lineDrawer);
 
 		DriverFeature.updateDriverInfo();
 	}
@@ -75,6 +85,16 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
 	}
 
+	private static void setupLineSelection(Application application){
+		application.addComponentMenu(LineDrawerAdapter.class, "Line Selection", 5);
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Basic line",
+				(ActionEvent e) -> lineDrawer.setLineType("BasicLine"));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Dotted line",
+				(ActionEvent e) -> lineDrawer.setLineType("DottedLine"));
+		application.addComponentMenuElement(LineDrawerAdapter.class, "Special line",
+				(ActionEvent e) -> lineDrawer.setLineType("specialline"));
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -89,7 +109,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
-
+				setupLineSelection(app);
 				app.setVisibility(true);
 			}
 		});
