@@ -7,7 +7,7 @@ import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
 public class SelectDriverMenuOptionListener implements ActionListener {
-	private DriverManager driverManager;
+	private final DriverManager driverManager;
 	private Job2dDriver driver = null;
 
 	public SelectDriverMenuOptionListener(Job2dDriver driver, DriverManager driverManager) {
