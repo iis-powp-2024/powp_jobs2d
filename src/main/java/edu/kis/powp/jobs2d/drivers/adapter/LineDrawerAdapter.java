@@ -8,11 +8,10 @@ import edu.kis.powp.jobs2d.Job2dDriver;
 import java.util.function.Supplier;
 
 public class LineDrawerAdapter implements Job2dDriver {
-
     private int startX = 0, startY = 0;
     private final DrawPanelController drawPanelController;
-
     private final ILine line;
+
     public LineDrawerAdapter(DrawPanelController drawPanelController, ILine line) {
         this.drawPanelController = drawPanelController;
         this.line = line;
@@ -34,7 +33,6 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public String toString() {
-        return "Line Drawer Adapter";
+        return "LineDrawerAdapter";
     }
-
 }
