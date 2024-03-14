@@ -48,10 +48,10 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DriverDrawer(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Basic Simulator", testDriver);
 
-		Job2dDriver testDriver2 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), 1);
+		Job2dDriver testDriver2 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), LineDrawerAdapter.lineTypeEnum.dotted);
 		DriverFeature.addDriver("Dotted Line Simulator", testDriver2);
 
-		Job2dDriver testDriver3 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), 2);
+		Job2dDriver testDriver3 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), LineDrawerAdapter.lineTypeEnum.special);
 		DriverFeature.addDriver("Special Line Simulator", testDriver3);
 
 		DriverFeature.updateDriverInfo();

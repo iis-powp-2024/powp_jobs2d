@@ -10,9 +10,12 @@ import javax.swing.*;
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver{
     private int startX = 0, startY = 0;
     private DrawPanelController drawer;
-    private int lineType;
+    public enum lineTypeEnum{
+        special, dotted, basic
+    }
+    private lineTypeEnum lineType;
 
-    public LineDrawerAdapter(DrawPanelController drawer, int lineType) {
+    public LineDrawerAdapter(DrawPanelController drawer, lineTypeEnum lineType) {
         super();
         this.drawer = drawer;
         this.lineType = lineType;
@@ -27,10 +30,13 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
     @Override
     public void operateTo(int x, int y) {
         ILine line;
-        if (lineType == 1) {
+        if (lineType == lineTypeEnum.dotted) {
             line = LineFactory.getDottedLine();
-        } else {
+        } else if(lineType == lineTypeEnum.special){
             line = LineFactory.getSpecialLine();
+        }
+        else {
+            line = LineFactory.getBasicLine();
         }
 
         line.setStartCoordinates(this.startX, this.startY);
