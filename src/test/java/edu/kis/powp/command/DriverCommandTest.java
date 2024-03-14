@@ -5,6 +5,8 @@ import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.jobs2d.drivers.adapter.DriverDrawer;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 
+import java.util.ArrayList;
+
 public class DriverCommandTest {
     public static void main(String[] args) {
         DrawPanelController controller = new DrawPanelController();
@@ -14,13 +16,13 @@ public class DriverCommandTest {
         SetPositionCommand setPositionCommand = new SetPositionCommand(0,0,drawer);
         setPositionCommand.execute();
 
-        OperateToCommand operateDown = new OperateToCommand(100,0, drawer);
-        OperateToCommand operateDownRight = new OperateToCommand(100,100, drawer);
-        OperateToCommand operateUpRight = new OperateToCommand(0,100, drawer);
-        OperateToCommand operateUpLeft = new OperateToCommand(0,0, drawer);
-        operateDown.execute();
-        operateDownRight.execute();
-        operateUpRight.execute();
-        operateUpLeft.execute();
+        ArrayList<OperateToCommand> listOfOperations = new ArrayList<>();
+        listOfOperations.add(new OperateToCommand(100,0, drawer));
+        listOfOperations.add(new OperateToCommand(100,100, drawer));
+        listOfOperations.add(new OperateToCommand(0,100, drawer));
+        listOfOperations.add(new OperateToCommand(0,0, drawer));
+        for(int i = 0; i < listOfOperations.size(); i++){
+            listOfOperations.get(i).execute();
+        }
     }
 }
