@@ -12,10 +12,10 @@ public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
     private final DrawPanelController drawPanelController;
 
-    private final Supplier<ILine> lineSupplier;
-    public LineDrawerAdapter(DrawPanelController drawPanelController, Supplier<ILine> lineSupplier) {
+    private final ILine line;
+    public LineDrawerAdapter(DrawPanelController drawPanelController, ILine line) {
         this.drawPanelController = drawPanelController;
-        this.lineSupplier = lineSupplier;
+        this.line = line;
     }
 
     @Override
@@ -26,7 +26,6 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = this.lineSupplier.get();
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         drawPanelController.drawLine(line);
