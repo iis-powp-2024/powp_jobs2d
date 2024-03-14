@@ -13,6 +13,7 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.command.CommandFactory;
 import edu.kis.powp.command.ComplexCommand;
+import edu.kis.powp.command.ScriptToCommand;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerDriver;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -34,11 +35,13 @@ public class TestJobs2dPatterns {
 		SelectTestFigureOptionListener selectTestFigure2OptionListener = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), FiguresJoe::figureScript2);
 		ComplexCommand rectangleCommands = CommandFactory.createRectangle(0, 0, 100, 100);
 		ComplexCommand circleCommands = CommandFactory.createCircle(0, 0, 100);
+		ComplexCommand JoeTest = new ScriptToCommand(FiguresJoe::figureScript1).getComplexCommand();
 
 		application.addTest("Figure Joe 1", selectTestFigure1OptionListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
 		application.addTest("Figure Rectangle", (ActionEvent e) -> rectangleCommands.execute(DriverFeature.getDriverManager()));
 		application.addTest("Figure Circle", (ActionEvent e) -> circleCommands.execute(DriverFeature.getDriverManager()));
+		application.addTest("Figure Joe Test", (ActionEvent e) -> JoeTest.execute(DriverFeature.getDriverManager()));
 	}
 
 	/**
