@@ -1,5 +1,8 @@
 package edu.kis.powp.command;
 
+/**
+ * Interface for driver commands
+ */
 public interface DriverCommand {
-    public void execute();
+    void execute();
 }
