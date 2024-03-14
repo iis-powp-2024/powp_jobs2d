@@ -25,7 +25,14 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
 			case "Command test":
-				TestCommand.executeTest(driverManager.getCurrentDriver());
+				TestCommand.customTest(driverManager.getCurrentDriver());
+				break;
+			case "Rectangle factory":
+				TestCommand.rectangleTest(driverManager.getCurrentDriver());
+				break;
+			case "Triangle factory":
+				TestCommand.triangleTest(driverManager.getCurrentDriver());
+				break;
 			default:
 				break;
 		}
