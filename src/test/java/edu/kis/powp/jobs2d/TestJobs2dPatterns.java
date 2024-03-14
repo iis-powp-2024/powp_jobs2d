@@ -38,6 +38,20 @@ public class TestJobs2dPatterns {
 	}
 
 	/**
+	 * Setup test concerning preset figures with command interface.
+	 *
+	 * @param application Application context.
+	 */
+	private static void setupCommandTests(Application application) {
+		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), "Command");
+
+		application.addTest("Command", selectTestFigureOptionListener);
+
+	}
+
+
+	/**
 	 * Setup driver manager, and set default driver for application.
 	 * 
 	 * @param application Application context.
@@ -85,6 +99,11 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
 	}
 
+	/**
+	 * Setup menu for adjusting line settings.
+	 *
+	 * @param application Application context.
+	 */
 	private static void setupLineSelection(Application application){
 		application.addComponentMenu(LineDrawerAdapter.class, "Line Selection", 5);
 		application.addComponentMenuElement(LineDrawerAdapter.class, "Basic line",
@@ -108,6 +127,7 @@ public class TestJobs2dPatterns {
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
 				setupPresetTests(app);
+				setupCommandTests(app);
 				setupLogger(app);
 				setupLineSelection(app);
 				app.setVisibility(true);
