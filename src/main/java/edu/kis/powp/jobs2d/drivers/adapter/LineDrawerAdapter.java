@@ -9,9 +9,11 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
 
 public class LineDrawerAdapter extends LineFactory implements Job2dDriver {
     private int startX = 0, startY = 0;
+    private final ILine line;
 
-    public LineDrawerAdapter() {
+    public LineDrawerAdapter(ILine line) {
         super();
+        this.line = line;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class LineDrawerAdapter extends LineFactory implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();
+//        ILine line = LineFactory.getSpecialLine();
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         this.setPosition(x, y);
