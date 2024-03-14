@@ -47,16 +47,16 @@ public class TestJobs2dPatterns {
 
 		DrawPanelController drawPanelController = DrawerFeature.getDrawerController();
 		Job2dDriver testDriver = new Job2dDriverToDrawPanelAdapter(drawPanelController);
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		DriverFeature.addDriver("Buggy Simulator Driver", testDriver);
 
 		Job2dDriver basicLineDriver = new LineDrawerAdapter(drawPanelController, LineFactory.getBasicLine());
-		DriverFeature.addDriver("Basic Line", basicLineDriver);
+		DriverFeature.addDriver("Basic Line Driver", basicLineDriver);
 
 		Job2dDriver dottedLineDriver = new LineDrawerAdapter(drawPanelController, LineFactory.getDottedLine());
-		DriverFeature.addDriver("Dotted Line", dottedLineDriver);
+		DriverFeature.addDriver("Dotted Line Driver", dottedLineDriver);
 
 		Job2dDriver specialLineDriver = new LineDrawerAdapter(drawPanelController, LineFactory.getSpecialLine());
-		DriverFeature.addDriver("Special Line", specialLineDriver);
+		DriverFeature.addDriver("Special Line Driver", specialLineDriver);
 
 		DriverFeature.updateDriverInfo();
 	}
