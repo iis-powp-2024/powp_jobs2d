@@ -14,6 +14,10 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
     private int startX = 0, startY = 0;
 
 
+    public LineDrawerAdapter() {
+        super();
+    }
+
     public LineDrawerAdapter(JPanel panel) {
         super();
         this.initialize(panel);
