@@ -9,11 +9,11 @@ import edu.kis.legacy.drawer.panel.DrawPanelController;
 /**
  * DriverAdapter class
  */
-public class DriverAdapter implements Job2dDriver {
+public class DrawerAdapter implements Job2dDriver {
 	private final DrawPanelController drawPanelController;
 	private int startX = 0, startY = 0;
 
-	public DriverAdapter() {
+	public DrawerAdapter() {
 		super();
 		drawPanelController = DrawerFeature.getDrawerController();
 	}
