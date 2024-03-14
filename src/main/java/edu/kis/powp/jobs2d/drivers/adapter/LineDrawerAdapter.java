@@ -33,6 +33,6 @@ public class LineDrawerAdapter extends LineFactory implements Job2dDriver {
 
     @Override
     public String toString() {
-        return "Special line";
+        return "@Q!$!@$!#@$(*#@&Q(%^*#@";
     }
 }
