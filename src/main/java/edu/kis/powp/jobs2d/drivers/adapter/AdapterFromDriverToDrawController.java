@@ -28,8 +28,7 @@ public class AdapterFromDriverToDrawController implements Job2dDriver {
 		line.setEndCoordinates(x, y);
 		this.setPosition(x, y);
 
-		DrawPanelController drawPanelController = DrawerFeature.getDrawerController();
-		drawPanelController.drawLine(line);
+		DrawerFeature.getDrawerController().drawLine(line);
 	}
 
 	@Override
