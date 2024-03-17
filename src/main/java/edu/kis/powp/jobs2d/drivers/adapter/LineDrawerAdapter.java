@@ -9,9 +9,13 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
  */
 public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
-    private final ILine line;
+    private ILine line;
 
     public LineDrawerAdapter(ILine line) {
+        this.line = line;
+    }
+
+    public void setLine(ILine line) {
         this.line = line;
     }
 

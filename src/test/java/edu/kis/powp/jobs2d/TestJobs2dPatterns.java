@@ -7,8 +7,10 @@ import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.AdapterFromDriverToDrawController;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -19,7 +21,7 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup test concerning preset figures in context.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
@@ -34,7 +36,7 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup driver manager, and set default driver for application.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupDrivers(Application application) {
@@ -45,12 +47,18 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new AdapterFromDriverToDrawController();
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
 
+		Job2dDriver DottedLineDriver = new LineDrawerAdapter(LineFactory.getDottedLine());
+		DriverFeature.addDriver("Dotted line driver", DottedLineDriver);
+
+		Job2dDriver SpecialLineDriver = new LineDrawerAdapter(LineFactory.getSpecialLine());
+		DriverFeature.addDriver("Special line driver", SpecialLineDriver);
+
 		DriverFeature.updateDriverInfo();
 	}
 
 	/**
 	 * Auxiliary routines to enable using Buggy Simulator.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupDefaultDrawerVisibilityManagement(Application application) {
@@ -62,7 +70,7 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup menu for adjusting logging settings.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupLogger(Application application) {
