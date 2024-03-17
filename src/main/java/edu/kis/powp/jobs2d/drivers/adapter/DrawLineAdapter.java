@@ -29,8 +29,6 @@ public class DrawLineAdapter extends DrawPanelController implements Job2dDriver 
 		line.setEndCoordinates(x, y);
 		setPosition(x, y);
 
-		//drawLine(line);
-
 		DrawPanelController drawPanelControll = DrawerFeature.getDrawerController();
 		drawPanelControll.drawLine(line);
 
@@ -38,6 +36,6 @@ public class DrawLineAdapter extends DrawPanelController implements Job2dDriver 
 
 	@Override
 	public String toString() {
-		return "@Q!$!@$!#@$(*#@&Q(%^*#@";
+		return "Normal Line Drawer";
 	}
 }
