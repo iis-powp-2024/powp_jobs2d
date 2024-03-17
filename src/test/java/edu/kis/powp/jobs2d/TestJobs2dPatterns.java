@@ -37,9 +37,8 @@ public class TestJobs2dPatterns {
 	/**
 	 * Setup driver manager, and set default driver for application.
 	 *
-	 * @param application Application context.
 	 */
-	private static void setupDrivers(Application application) {
+	private static void setupDrivers() {
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
@@ -90,19 +89,17 @@ public class TestJobs2dPatterns {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				Application app = new Application("2d jobs Visio");
-				DrawerFeature.setupDrawerPlugin(app);
-				setupDefaultDrawerVisibilityManagement(app);
+		EventQueue.invokeLater(() -> {
+			Application app = new Application("2d jobs Visio");
+			DrawerFeature.setupDrawerPlugin(app);
+			setupDefaultDrawerVisibilityManagement(app);
 
-				DriverFeature.setupDriverPlugin(app);
-				setupDrivers(app);
-				setupPresetTests(app);
-				setupLogger(app);
+			DriverFeature.setupDriverPlugin(app);
+			setupDrivers();
+			setupPresetTests(app);
+			setupLogger(app);
 
-				app.setVisibility(true);
-			}
+			app.setVisibility(true);
 		});
 	}
 
