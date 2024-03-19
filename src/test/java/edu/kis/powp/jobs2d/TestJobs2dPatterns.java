@@ -8,12 +8,18 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.ComplexCommand;
+import edu.kis.powp.command.OperateToCommand;
+import edu.kis.powp.command.SetPositionCommand;
+import edu.kis.powp.jobs2d.command.ComplexCommandTest;
 import edu.kis.powp.jobs2d.drivers.adapter.DriverDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+
+import javax.swing.*;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -83,6 +89,15 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
 	}
 
+	private static void setupComplexCommands(Application application) {
+		application.addComponentMenu(ComplexCommandTest.class, "ComplexCommandTest");
+		ComplexCommand commandsToSquare = ComplexCommandTest.setupSquareFactory();
+		application.addComponentMenuElement(ComplexCommandTest.class, "Square",
+				(ActionEvent e) -> commandsToSquare.execute());
+		ComplexCommand commandsToRhombus = ComplexCommandTest.setupRhombusFactory();
+		application.addComponentMenuElement(ComplexCommandTest.class, "Rhombus",
+				(ActionEvent e) -> commandsToRhombus.execute());
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -91,12 +106,12 @@ public class TestJobs2dPatterns {
 			public void run() {
 				Application app = new Application("2d jobs Visio");
 				DrawerFeature.setupDrawerPlugin(app);
-//				setupDefaultDrawerVisibilityManagement(app);
 
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				setupComplexCommands(app);
 
 				app.setVisibility(true);
 			}

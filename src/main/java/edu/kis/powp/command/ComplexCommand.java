@@ -17,7 +17,7 @@ public class ComplexCommand implements DriverCommand {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (DriverCommand command : this.commands) {
-            res.append(command.toString());
+            res.append(command.toString()).append("\n");
         }
         return res.toString();
     }
