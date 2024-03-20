@@ -33,6 +33,6 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public String toString() {
-        return "LineDrawerAdapter";
+        return "LineDrawer";
     }
 }
