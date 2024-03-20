@@ -13,11 +13,15 @@ import java.util.IllformedLocaleException;
  */
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver {
     private int startX = 0, startY = 0;
-    private final ILine lineType;
+    private ILine lineType;
 
     public LineDrawerAdapter(ILine line) {
         super();
         this.lineType = line;
+    }
+
+    public LineDrawerAdapter(){
+        super();
     }
 
     @Override
@@ -33,8 +37,7 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
         line.setEndCoordinates(x, y);
 
         setPosition(x, y);
-        DrawPanelController drawer = DrawerFeature.getDrawerController();
-        drawer.drawLine(line);
+        drawLine(line);
     }
 
     @Override
