@@ -37,7 +37,7 @@ public class SelectTestFigureOptionListener implements ActionListener {
                 command.execute();
                 break;
             case (5):
-                command = ComplexCommandFactory.createTriangle(driverManager.getCurrentDriver(), -100, -100, 0, 0, 100, 100);
+                command = ComplexCommandFactory.createTriangle(driverManager.getCurrentDriver(), -100, -100, 100);
                 command.execute();
                 break;
         }

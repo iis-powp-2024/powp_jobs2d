@@ -22,12 +22,13 @@ public class ComplexCommandFactory {
         squareCommand.addCommand(new OperateToCommand(x, y, driver));
         return squareCommand;
     }
-    public static DriverCommand createTriangle(Job2dDriver driver, int x1, int y1, int x2, int y2, int x3, int y3) {
+    public static DriverCommand createTriangle(Job2dDriver driver, int x, int y, int side) {
         ComplexCommand triangleCommand = new ComplexCommand();
-        triangleCommand.addCommand(new SetPositionCommand(x1, y1, driver));
-        triangleCommand.addCommand(new OperateToCommand(x2, y2, driver));
-        triangleCommand.addCommand(new OperateToCommand(x3, y3, driver));
-        triangleCommand.addCommand(new OperateToCommand(x1, y1, driver));
+        triangleCommand.addCommand(new SetPositionCommand(x, y, driver));
+        triangleCommand.addCommand(new OperateToCommand(x + side, y, driver));
+        int height = (int) ((side * Math.sqrt(3)) / 2);
+        triangleCommand.addCommand(new OperateToCommand(x + (side/2), y-height, driver));
+        triangleCommand.addCommand(new OperateToCommand(x, y, driver));
         return triangleCommand;
     }
 }
