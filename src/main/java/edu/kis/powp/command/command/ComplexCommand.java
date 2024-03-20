@@ -1,6 +1,6 @@
-package edu.kis.powp.command.features;
+package edu.kis.powp.command.command;
 
-import edu.kis.powp.command.drivers.DriverCommand;
+import edu.kis.powp.command.command.DriverCommand;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -44,9 +44,14 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupCommandTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), "Command");
-
+				DriverFeature.getDriverManager(), "Command Test");
 		application.addTest("Command", selectTestFigureOptionListener);
+
+		selectTestFigureOptionListener = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), "Rectangle Test");
+		application.addTest("Rectangle", selectTestFigureOptionListener);
+
+		selectTestFigureOptionListener = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), "Circle Test");
+		application.addTest("Circle", selectTestFigureOptionListener);
 
 	}
 

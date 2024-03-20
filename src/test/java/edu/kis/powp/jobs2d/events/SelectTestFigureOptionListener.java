@@ -26,8 +26,14 @@ public class SelectTestFigureOptionListener implements ActionListener {
 			case "Figure Joe 2":
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
-			case "Command":
+			case "Command Test":
 				FigureCommandTest.figureTest(driverManager.getCurrentDriver());
+				break;
+			case "Rectangle Test":
+				FigureCommandTest.rectangleTest(driverManager.getCurrentDriver());
+				break;
+			case "Circle Test":
+				FigureCommandTest.circleTest(driverManager.getCurrentDriver());
 				break;
 			default:
 				System.err.println("Unknown figure name: " + figureName);

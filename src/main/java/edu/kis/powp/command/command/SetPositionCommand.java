@@ -1,6 +1,6 @@
-package edu.kis.powp.command.features;
+package edu.kis.powp.command.command;
 
-import edu.kis.powp.command.drivers.DriverCommand;
+import edu.kis.powp.command.command.DriverCommand;
 import edu.kis.powp.jobs2d.Job2dDriver;
 
 public class SetPositionCommand implements DriverCommand {
@@ -12,11 +12,6 @@ public class SetPositionCommand implements DriverCommand {
         this.x = x;
         this.y = y;
         this.driver = driver;
-    }
-
-    public void setPoint(int x, int y){
-        this.x = x;
-        this.y = y;
     }
 
     public int getX(){
