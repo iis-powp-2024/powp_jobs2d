@@ -2,6 +2,7 @@ package edu.kis.powp.jobs2d;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.ComplexCommand;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawingAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
@@ -18,6 +20,7 @@ import edu.kis.powp.jobs2d.events.SelectTestFigure2OptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.command.factory.Factory;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -79,6 +82,19 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
 	}
 
+
+	private static void setupCommandsTest(Application application) {
+		application.addComponentMenu(Factory.class, "Complex Factory");
+		ComplexCommand squareShape = Factory.SquareShape(0, 50);
+		application.addComponentMenuElement(Factory.class, "Square",
+				(ActionEvent e) -> squareShape.execute());
+		ComplexCommand pentagonShape = Factory.PentagonShape(-100, 50);
+		application.addComponentMenuElement(Factory.class, "Pentagon",
+				(ActionEvent e) -> pentagonShape.execute());
+		ComplexCommand triangleShape = Factory.TriangleShape(100, -100);
+		application.addComponentMenuElement(Factory.class, "Triangle",
+				(ActionEvent e) -> triangleShape.execute());
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -92,6 +108,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				setupCommandsTest(app);
 
 				app.setVisibility(true);
 			}
