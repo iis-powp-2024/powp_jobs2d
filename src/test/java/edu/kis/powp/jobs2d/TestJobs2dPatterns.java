@@ -35,9 +35,20 @@ public class TestJobs2dPatterns {
 				2
 		);
 
+		SelectTestFigureOptionListener selectTestFigure3OptionListener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(),
+				3
+		);
+
+		SelectTestFigureOptionListener selectTestFigure4OptionListener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(),
+				4
+		);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
 		application.addTest("Figure Joe 2", selectTestFigure2OptionListener);
+		application.addTest("Test Rectangle Factory", selectTestFigure3OptionListener);
+		application.addTest("Test Diamond Factory", selectTestFigure4OptionListener);
 	}
 
 	/**
