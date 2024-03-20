@@ -10,9 +10,9 @@ import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 public class SelectTestFigureOptionListener implements ActionListener {
 
     private DriverManager driverManager;
-    private int selectedTestFigure;
+    private Figure selectedTestFigure;
 
-    public SelectTestFigureOptionListener(DriverManager driverManager, int selectedTestFigure) {
+    public SelectTestFigureOptionListener(DriverManager driverManager, Figure selectedTestFigure) {
         this.driverManager = driverManager;
         this.selectedTestFigure = selectedTestFigure;
     }
@@ -20,16 +20,16 @@ public class SelectTestFigureOptionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (selectedTestFigure) {
-            case 1:
+            case FIGURE_JOE_1:
                 FiguresJoe.figureScript1(driverManager.getCurrentDriver());
                 break;
-            case 2:
+            case FIGURE_JOE_2:
                 FiguresJoe.figureScript2(driverManager.getCurrentDriver());
                 break;
-            case 3:
+            case RECTANGLE:
                 ComplexCommand.createRectangle(driverManager.getCurrentDriver(), 0, 0, 200, 100).execute();
                 break;
-            case 4:
+            case CIRCLE:
                 ComplexCommand.createCircle(driverManager.getCurrentDriver(), 0, 0, 100).execute();
                 break;
         }

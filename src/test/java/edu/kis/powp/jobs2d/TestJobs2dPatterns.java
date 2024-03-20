@@ -1,20 +1,18 @@
 package edu.kis.powp.jobs2d;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
-import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawingAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
-import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
+import edu.kis.powp.jobs2d.events.Figure;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -26,13 +24,13 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		application.addTest("Figure Joe 1", new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1));
+				DriverFeature.getDriverManager(), Figure.FIGURE_JOE_1));
 		application.addTest("Figure Joe 2", new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2));
+				DriverFeature.getDriverManager(), Figure.FIGURE_JOE_2));
 		application.addTest("Rectangle", new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 3));
+				DriverFeature.getDriverManager(), Figure.RECTANGLE));
 		application.addTest("Circle", new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 4));
+				DriverFeature.getDriverManager(), Figure.CIRCLE));
 	}
 
 	/**
