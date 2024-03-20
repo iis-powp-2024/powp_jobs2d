@@ -24,9 +24,12 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+				DriverFeature.getDriverManager(), 1);
+		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), 2);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
 	}
 
 	/**
@@ -80,7 +83,7 @@ public class TestJobs2dPatterns {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+  			public void run() {
 				Application app = new Application("2d jobs Visio");
 				DrawerFeature.setupDrawerPlugin(app);
 //				setupDefaultDrawerVisibilityManagement(app);
