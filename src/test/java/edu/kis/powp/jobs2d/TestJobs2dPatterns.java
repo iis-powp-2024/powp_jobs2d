@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.ComplexCommand;
+import edu.kis.powp.command.ComplexCommandFactory;
 import edu.kis.powp.jobs2d.drivers.adapter.DriverDrawer;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -87,6 +89,22 @@ public class TestJobs2dPatterns {
 		application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
 	}
 
+	private static void setupComplexCommands(Application application) {
+		application.addComponentMenu(ComplexCommandFactory.class, "Complex Command");
+
+		ComplexCommand squareCommand = ComplexCommandFactory.getSquare(DrawerFeature.getDrawerController(), LineDrawerAdapter.lineTypeEnum.basic);
+		application.addComponentMenuElement(ComplexCommandFactory.class, "Square",
+				(ActionEvent e) -> squareCommand.execute());
+
+		ComplexCommand triangleCommand = ComplexCommandFactory.getTriangle(DrawerFeature.getDrawerController(), LineDrawerAdapter.lineTypeEnum.special);
+		application.addComponentMenuElement(ComplexCommandFactory.class, "Triangle",
+				(ActionEvent e) -> triangleCommand.execute());
+
+		ComplexCommand hexagonCommand = ComplexCommandFactory.getHexagon(DrawerFeature.getDrawerController(), LineDrawerAdapter.lineTypeEnum.dotted);
+		application.addComponentMenuElement(ComplexCommandFactory.class, "Hexagon",
+				(ActionEvent e) -> hexagonCommand.execute());
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -96,6 +114,7 @@ public class TestJobs2dPatterns {
 				Application app = new Application("2d jobs Visio");
 				DrawerFeature.setupDrawerPlugin(app);
 				setupDefaultDrawerVisibilityManagement(app);
+				setupComplexCommands(app);
 
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
