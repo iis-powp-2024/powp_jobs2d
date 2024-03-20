@@ -8,8 +8,8 @@ import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
-	private DriverManager driverManager;
-	private String figuresName;
+	private final DriverManager driverManager;
+	private final String figuresName;
 
 	public SelectTestFigureOptionListener(DriverManager driverManager , String figuresName) {
 		this.driverManager = driverManager;
@@ -26,9 +26,6 @@ public class SelectTestFigureOptionListener implements ActionListener {
 			case "FiguresJoe2":
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
-
-
-
 			default:
 				throw new IllegalArgumentException("Unknown figure name: " + figuresName);
 		}
