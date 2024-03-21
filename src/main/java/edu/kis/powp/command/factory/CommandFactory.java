@@ -6,7 +6,7 @@ import edu.kis.powp.command.OperateToCommand;
 import edu.kis.powp.command.SetPositionCommand;
 import edu.kis.powp.jobs2d.Job2dDriver;
 
-public class Job2dFactory {
+public class CommandFactory {
     public static DriverCommand getSquare(Job2dDriver driver, Integer size) {
         return new ComplexCommand(new DriverCommand[]{
                 new SetPositionCommand(driver, 0, 0),
