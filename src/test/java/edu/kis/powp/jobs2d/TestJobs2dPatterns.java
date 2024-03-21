@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerAdapter;
+import edu.kis.powp.jobs2d.events.Figures;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
@@ -21,13 +22,21 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1);
+				DriverFeature.getDriverManager(), Figures.figureJoe1);
 
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2);
+				DriverFeature.getDriverManager(), Figures.figureJoe2);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerRectangle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.rectangleFigure);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerDiamond = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.diamondFactory);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Rectangle Factory", selectTestFigureOptionListenerRectangle);
+		application.addTest("Diamond Factory", selectTestFigureOptionListenerDiamond);
 	}
 
 	/**
