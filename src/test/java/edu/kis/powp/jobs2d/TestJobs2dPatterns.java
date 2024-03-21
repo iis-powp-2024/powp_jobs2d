@@ -30,10 +30,13 @@ public class TestJobs2dPatterns {
                 DriverFeature.getDriverManager(), 2);
         SelectTestFigureOptionListener test3 = new SelectTestFigureOptionListener(
                 DriverFeature.getDriverManager(), 3);
+        SelectTestFigureOptionListener test4 = new SelectTestFigureOptionListener(
+                DriverFeature.getDriverManager(), 4);
 
         application.addTest("Figure Joe 1", test1);
         application.addTest("Figure 2", test2);
         application.addTest("Square", test3);
+        application.addTest("Triangle", test4);
     }
 
     /**

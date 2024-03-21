@@ -32,6 +32,10 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				DriverCommand command = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
 				command.execute();
 				break;
+			case 4:
+				CommandFactory.makeTriangle(driverManager.getCurrentDriver(),
+						-50, -50, 100, 69, 40, 50).execute();
+				break;
 		}
 	}
 }
