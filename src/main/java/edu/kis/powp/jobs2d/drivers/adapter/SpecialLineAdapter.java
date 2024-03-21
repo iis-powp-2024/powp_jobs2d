@@ -5,7 +5,7 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 
-public class SpecialLineDrawerAdapter implements Job2dDriver {
+public class SpecialLineAdapter implements Job2dDriver {
 
     private int startX = 0;
     private int startY = 0;
