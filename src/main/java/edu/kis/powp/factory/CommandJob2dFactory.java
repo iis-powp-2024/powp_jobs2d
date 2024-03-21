@@ -6,7 +6,7 @@ import edu.kis.powp.command.OperateToCommand;
 import edu.kis.powp.command.SetPositionCommand;
 import edu.kis.powp.jobs2d.Job2dDriver;
 
-public class Job2dFactory {
+public class CommandJob2dFactory {
     public static ComplexCommand createRectangle(Job2dDriver driver) {
         return new ComplexCommand(new DriverCommand[] {
             new SetPositionCommand(driver, 0, 0),
