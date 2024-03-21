@@ -1,48 +1,69 @@
 package edu.kis.powp.jobs2d.events;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import edu.kis.powp.jobs2d.Enums.Script;
+import edu.kis.powp.jobs2d.command.Commands.ShapeFactory;
+import edu.kis.powp.jobs2d.command.Exceptions.IncorrectInputException;
+import edu.kis.powp.jobs2d.command.Interfaces.DriverCommand;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class SelectTestFigureOptionListener implements ActionListener {
 
-	private DriverManager driverManager;
-	private int testNumber;
+    private DriverManager driverManager;
 
-	public SelectTestFigureOptionListener(DriverManager driverManager, int testNumber) {
-		this.driverManager = driverManager;
-		this.testNumber = validateTestNumber(testNumber);
-	}
+    private Script script;
 
-	private int validateTestNumber(int testNumber) {
+    public SelectTestFigureOptionListener(DriverManager driverManager, Script script) throws IncorrectInputException {
 
-		switch (testNumber) {
+        if (driverManager == null || script == null)
+            throw new IncorrectInputException("Input cannot be null!");
 
-            case 2:
-				return 2;
+        this.driverManager = driverManager;
+        this.script = script;
+    }
 
-			default:
-				return 1;
-		}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        DriverCommand cmd = null;
 
-	}
+        try {
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+            switch (script) {
+                case FIGURE_SCRIPT_1:
+                    FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+                    break;
 
-		switch (testNumber) {
-			case 1:
-				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
-				break;
+                case FIGURE_SCRIPT_2:
+                    FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+                    break;
 
-			case 2:
-				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+                case RECTANGLE:
+                    cmd = ShapeFactory.getRectangle(driverManager.getCurrentDriver(), new Point(-100, -100), 150, 100);
+                    cmd.execute();
+                    break;
 
-			default:
-				break;
-		}
+                case TRIANGLE:
+                    cmd = ShapeFactory.getTriangle(driverManager.getCurrentDriver(), new Point(0, 0), 100);
+                    cmd.execute();
+                    break;
 
-	}
+                case CIRCLE:
+                    cmd = ShapeFactory.getCircle(driverManager.getCurrentDriver(), new Point(0, 0), 100, 1000);
+                    cmd.execute();
+                    break;
+
+                default:
+                    break;
+            }
+
+        } catch (IncorrectInputException ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
 }

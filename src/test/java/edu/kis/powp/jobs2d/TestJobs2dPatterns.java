@@ -6,6 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.jobs2d.Enums.Script;
+import edu.kis.powp.jobs2d.command.Exceptions.IncorrectInputException;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.SolidLineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
@@ -21,15 +23,42 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1);
 
-		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2);
+        SelectTestFigureOptionListener selectTestFigureOptionListener1 = null;
+        SelectTestFigureOptionListener selectTestFigureOptionListener2 = null;
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
-		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
-	}
+		SelectTestFigureOptionListener selectTestRectangleListener = null;
+		SelectTestFigureOptionListener selectTestTriangleListener = null;
+		SelectTestFigureOptionListener selectTestCircleListener = null;
+
+        try {
+
+            selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
+                    DriverFeature.getDriverManager(), Script.FIGURE_SCRIPT_1);
+
+            selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
+                    DriverFeature.getDriverManager(), Script.FIGURE_SCRIPT_2);
+
+			selectTestTriangleListener = new SelectTestFigureOptionListener(
+					DriverFeature.getDriverManager(), Script.TRIANGLE);
+
+			selectTestRectangleListener = new SelectTestFigureOptionListener(
+					DriverFeature.getDriverManager(), Script.RECTANGLE);
+
+			selectTestCircleListener = new SelectTestFigureOptionListener(
+					DriverFeature.getDriverManager(), Script.CIRCLE);
+
+        } catch (IncorrectInputException ex) {
+            ex.printStackTrace();
+        }
+
+
+        application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
+        application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Rectangle", selectTestRectangleListener);
+		application.addTest("Triangle", selectTestTriangleListener);
+		application.addTest("Circle", selectTestCircleListener);
+    }
 
 	/**
 	 * Setup driver manager, and set default driver for application.
