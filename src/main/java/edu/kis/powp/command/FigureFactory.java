@@ -3,33 +3,34 @@ package edu.kis.powp.command;
 import edu.kis.powp.jobs2d.Job2dDriver;
 
 public class FigureFactory {
-    public static DriverCommand getTriangle(Job2dDriver driver) {
-        ComplexCommand complexCommand = new ComplexCommand();
-        complexCommand.addCommand(new SetPositionCommand(driver, -100, -100));
-        complexCommand.addCommand(new OperateToCommand(driver, 100, -100));
-        complexCommand.addCommand(new OperateToCommand(driver, 0, 100));
-        complexCommand.addCommand(new OperateToCommand(driver, -100, -100));
-        return complexCommand;
-    }
 
     public static DriverCommand getSquare(Job2dDriver driver) {
-        ComplexCommand complexCommand = new ComplexCommand();
-        complexCommand.addCommand(new SetPositionCommand(driver, -100, -100));
-        complexCommand.addCommand(new OperateToCommand(driver, 100, -100));
-        complexCommand.addCommand(new OperateToCommand(driver, 100, 100));
-        complexCommand.addCommand(new OperateToCommand(driver, -100, 100));
-        complexCommand.addCommand(new OperateToCommand(driver, -100, -100));
-        return complexCommand;
+        return new ComplexCommandBuilder()
+                .addCommand(new SetPositionCommand(driver, -100, -100))
+                .addCommand(new OperateToCommand(driver, 100, -100))
+                .addCommand(new OperateToCommand(driver, 100, 100))
+                .addCommand(new OperateToCommand(driver, -100, 100))
+                .addCommand(new OperateToCommand(driver, -100, -100))
+                .build();
+    }
+
+    public static DriverCommand getTriangle(Job2dDriver driver) {
+        return new ComplexCommandBuilder()
+                .addCommand(new SetPositionCommand(driver, -100, -100))
+                .addCommand(new OperateToCommand(driver, 100, -100))
+                .addCommand(new OperateToCommand(driver, 0, 100))
+                .addCommand(new OperateToCommand(driver, -100, -100))
+                .build();
     }
 
     public static DriverCommand getRhombus(Job2dDriver driver) {
-        ComplexCommand complexCommand = new ComplexCommand();
-        complexCommand.addCommand(new SetPositionCommand(driver, 0, -100));
-        complexCommand.addCommand(new OperateToCommand(driver, 200, 0)); // doubled x-coordinate
-        complexCommand.addCommand(new OperateToCommand(driver, 0, 100));
-        complexCommand.addCommand(new OperateToCommand(driver, -200, 0)); // doubled x-coordinate
-        complexCommand.addCommand(new OperateToCommand(driver, 0, -100));
-        return complexCommand;
+        return new ComplexCommandBuilder()
+                .addCommand(new SetPositionCommand(driver, 0, -100))
+                .addCommand(new OperateToCommand(driver, 200, 0))
+                .addCommand(new OperateToCommand(driver, 0, 100))
+                .addCommand(new OperateToCommand(driver, -200, 0))
+                .addCommand(new OperateToCommand(driver, 0, -100))
+                .build();
     }
 
     public static DriverCommand getCircle(Job2dDriver driver) {
