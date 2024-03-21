@@ -14,6 +14,7 @@ import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
+import edu.kis.powp.jobs2d.events.Figures;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -25,13 +26,21 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(),1);
+		DriverFeature.getDriverManager(), Figures.figureJoe1);
 
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(),2);
+		DriverFeature.getDriverManager(), Figures.figureJoe2);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerRectangle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.rectangleFigure);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerDiamond = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.diamondFactory);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Rectangle Factory", selectTestFigureOptionListenerRectangle);
+		application.addTest("Diamond Factory", selectTestFigureOptionListenerDiamond);
 	}
 
 
@@ -48,11 +57,7 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DrawerAdapter();
 		DriverFeature.addDriver("Basic Line Simulator", testDriver);
 
-		Job2dDriver specialLine = new LineDrawerAdapter(1);
-		DriverFeature.addDriver("Special Line Simulator", specialLine);
 
-		Job2dDriver dotedLine = new LineDrawerAdapter(2);
-		DriverFeature.addDriver("Dotted Line Simulator", dotedLine);
 
 		DriverFeature.updateDriverInfo();
 	}
