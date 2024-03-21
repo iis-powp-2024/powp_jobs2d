@@ -15,7 +15,7 @@ public class ComplexCommandBuilder {
         return this;
     }
 
-    public DriverCommand build() {
+    public ComplexCommand build() {
         return new ComplexCommand(commands);
     }
 }
