@@ -8,7 +8,8 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
-import edu.kis.powp.jobs2d.drivers.adapter.MyAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.DrawLineAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -24,9 +25,15 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+				DriverFeature.getDriverManager(), 1
+		);
+
+		SelectTestFigureOptionListener selectTestSecondFigureOptionListener = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), 2
+		);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 2", selectTestSecondFigureOptionListener);
 	}
 
 	/**
@@ -39,8 +46,12 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new MyAdapter();
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		Job2dDriver testDriver = new DrawLineAdapter();
+		DriverFeature.addDriver("Normal Line Simulator", testDriver);
+
+		Job2dDriver testSpecialDriver = new LineDrawerAdapter();
+		DriverFeature.addDriver("Special Line Simulator", testSpecialDriver);
+
 
 		DriverFeature.updateDriverInfo();
 	}
@@ -53,8 +64,8 @@ public class TestJobs2dPatterns {
 	private static void setupDefaultDrawerVisibilityManagement(Application application) {
 		DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
 		application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
-				new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
-		defaultDrawerWindow.setVisible(true);
+				new SelectChangeVisibleOptionListener(defaultDrawerWindow), false);
+		defaultDrawerWindow.setVisible(false);
 	}
 
 	/**
