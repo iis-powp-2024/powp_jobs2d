@@ -2,6 +2,7 @@ package edu.kis.powp.jobs2d;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.sql.Driver;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,6 +10,8 @@ import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.DriverCommand;
+import edu.kis.powp.command.FigureFactory;
 import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.Job2dDriverToDrawPanelAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
@@ -33,6 +36,36 @@ public class TestJobs2dPatterns {
 		application.addTest("Figure Joe 2", e -> FiguresJoe.figureScript2(DriverFeature.getDriverManager().getCurrentDriver()));
 
 		application.addTest("Figure Jane", e -> FiguresJane.figureScript(new AbstractDriverAdapter(DriverFeature.getDriverManager().getCurrentDriver())));
+
+		application.addTest("Square", e -> {
+			DriverCommand command = FigureFactory.getSquare(DriverFeature.getDriverManager().getCurrentDriver());
+			command.execute();
+		});
+
+		application.addTest("Triangle", e -> {
+			DriverCommand command = FigureFactory.getTriangle(DriverFeature.getDriverManager().getCurrentDriver());
+			command.execute();
+		});
+
+		application.addTest("Rhombus", e -> {
+			DriverCommand command = FigureFactory.getRhombus(DriverFeature.getDriverManager().getCurrentDriver());
+			command.execute();
+		});
+
+		application.addTest("Circle", e -> {
+			DriverCommand command = FigureFactory.getCircle(DriverFeature.getDriverManager().getCurrentDriver());
+			command.execute();
+		});
+
+		application.addTest("Hexagon", e -> {
+			DriverCommand command = FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 6);
+			command.execute();
+		});
+
+		application.addTest("Dodecagon", e -> {
+			DriverCommand command = FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 12);
+			command.execute();
+		});
 	}
 
 	/**
