@@ -14,6 +14,7 @@ import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import enums.DriverType;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -47,10 +48,10 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new DrawerAdapter();
 		DriverFeature.addDriver("Basic Line Simulator", testDriver);
 
-		Job2dDriver specialLine = new LineDrawerAdapter(1);
+		Job2dDriver specialLine = new LineDrawerAdapter(DriverType.SPECIAL_LINE);
 		DriverFeature.addDriver("Special Line Simulator", specialLine);
 
-		Job2dDriver dotedLine = new LineDrawerAdapter(2);
+		Job2dDriver dotedLine = new LineDrawerAdapter(DriverType.DOTTED_LINE);
 		DriverFeature.addDriver("Dotted Line Simulator", dotedLine);
 
 		DriverFeature.updateDriverInfo();
