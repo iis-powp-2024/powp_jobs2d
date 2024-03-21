@@ -5,8 +5,15 @@ import interfaces.DriverCommand;
 
 public class OperateToCommand implements DriverCommand {
     private int x,y;
+    private final Job2dDriver driver;
 
-    public void setCoordinates(int x,int y){
+    OperateToCommand(int x, int y, Job2dDriver driver){
+        this.x = x;
+        this.y = y;
+        this.driver = driver;
+    }
+
+    public void setCoordinates(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -14,7 +21,7 @@ public class OperateToCommand implements DriverCommand {
 
     // go to next point
     @Override
-    public void execute(Job2dDriver driver) {
-        driver.operateTo(x,y);
+    public void execute() {
+        this.driver.operateTo(x,y);
     }
 }

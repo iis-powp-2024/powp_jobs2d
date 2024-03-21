@@ -5,15 +5,23 @@ import interfaces.DriverCommand;
 
 public class SetPositionCommand implements DriverCommand {
     private int x,y;
+    private final Job2dDriver driver;
 
-    public void setCoordinates(int x,int y){
+    SetPositionCommand(int x, int y, Job2dDriver driver){
+        this.x = x;
+        this.y = y;
+        this.driver = driver;
+    }
+
+    public void setCoordinates(int x, int y){
         this.x = x;
         this.y = y;
     }
 
-    // set point
+
+    // go to next point
     @Override
-    public void execute(Job2dDriver driver) {
-        driver.setPosition(x,y);
+    public void execute() {
+        this.driver.setPosition(x,y);
     }
 }
