@@ -1,7 +1,7 @@
 package edu.kis.powp.jobs2d.events;
 
 import edu.kis.powp.jobs2d.drivers.DriverManager;
-import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverToJob2DAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
@@ -35,7 +35,7 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 			case FiguresJane_1:
 
-				FiguresJane.figureScript( new AbstractDriverToJob2DAdapter(driverManager) );
+				FiguresJane.figureScript( new AbstractDriverAdapter(driverManager) );
 
 				break;
 			default:

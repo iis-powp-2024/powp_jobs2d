@@ -4,10 +4,10 @@ import edu.kis.powp.jobs2d.AbstractDriver;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 
-public class AbstractDriverToJob2DAdapter extends AbstractDriver {
+public class AbstractDriverAdapter extends AbstractDriver {
 
     private final DriverManager driverManager;
-    public AbstractDriverToJob2DAdapter(DriverManager driverManager) {
+    public AbstractDriverAdapter(DriverManager driverManager) {
         super(0, 0);
         this.driverManager = driverManager;
     }
