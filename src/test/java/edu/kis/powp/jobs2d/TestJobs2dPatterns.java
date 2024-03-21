@@ -24,11 +24,16 @@ public class TestJobs2dPatterns {
      * @param application Application context.
      */
     private static void setupPresetTests(Application application) {
-        SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-                DriverFeature.getDriverManager());
+        SelectTestFigureOptionListener test1 = new SelectTestFigureOptionListener(
+                DriverFeature.getDriverManager(), 1);
+        SelectTestFigureOptionListener test2 = new SelectTestFigureOptionListener(
+                DriverFeature.getDriverManager(), 2);
+        SelectTestFigureOptionListener test3 = new SelectTestFigureOptionListener(
+                DriverFeature.getDriverManager(), 3);
 
-        application.addTest("Figure Joe 1", selectTestFigureOptionListener);
-        application.addTest("Figure 2", selectTestFigureOptionListener);
+        application.addTest("Figure Joe 1", test1);
+        application.addTest("Figure 2", test2);
+        application.addTest("Square", test3);
     }
 
     /**
