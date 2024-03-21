@@ -12,6 +12,7 @@ public class OperateToCommand implements DriverCommand{
         this.y = y;
     }
 
+    @Override
     public void setDriver(Job2dDriver driver) {
         this.driver = driver;
     }
@@ -20,4 +21,5 @@ public class OperateToCommand implements DriverCommand{
     public void execute(){
         driver.operateTo(x, y);
     }
+
 }
