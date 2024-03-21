@@ -15,6 +15,7 @@ import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 import enums.DriverType;
+import enums.TestOption;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -26,13 +27,21 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(),1);
+				DriverFeature.getDriverManager(), TestOption.FIGURE_SCRIPT_1);
 
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(),2);
+				DriverFeature.getDriverManager(),TestOption.FIGURE_SCRIPT_2);
+
+		SelectTestFigureOptionListener selectTestFigureOptionCircle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(),TestOption.CIRCLE);
+
+		SelectTestFigureOptionListener selectTestFigureOptionRectangle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(),TestOption.RECTANGLE);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Circle", selectTestFigureOptionCircle);
+		application.addTest("Rectangle", selectTestFigureOptionRectangle);
 	}
 
 	/**
