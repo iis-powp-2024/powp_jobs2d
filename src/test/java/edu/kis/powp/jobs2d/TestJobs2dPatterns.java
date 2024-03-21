@@ -31,41 +31,25 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
+
 		application.addTest("Figure Joe 1", e -> FiguresJoe.figureScript1(DriverFeature.getDriverManager().getCurrentDriver()));
 
 		application.addTest("Figure Joe 2", e -> FiguresJoe.figureScript2(DriverFeature.getDriverManager().getCurrentDriver()));
 
 		application.addTest("Figure Jane", e -> FiguresJane.figureScript(new AbstractDriverAdapter(DriverFeature.getDriverManager().getCurrentDriver())));
 
-		application.addTest("Square", e -> {
-			DriverCommand command = FigureFactory.getSquare(DriverFeature.getDriverManager().getCurrentDriver());
-			command.execute();
-		});
+		application.addTest("Square", e -> FigureFactory.getSquare(DriverFeature.getDriverManager().getCurrentDriver()).execute());
 
-		application.addTest("Triangle", e -> {
-			DriverCommand command = FigureFactory.getTriangle(DriverFeature.getDriverManager().getCurrentDriver());
-			command.execute();
-		});
+		application.addTest("Triangle", e -> FigureFactory.getTriangle(DriverFeature.getDriverManager().getCurrentDriver()).execute());
 
-		application.addTest("Rhombus", e -> {
-			DriverCommand command = FigureFactory.getRhombus(DriverFeature.getDriverManager().getCurrentDriver());
-			command.execute();
-		});
+		application.addTest("Rhombus", e -> FigureFactory.getRhombus(DriverFeature.getDriverManager().getCurrentDriver()).execute());
 
-		application.addTest("Circle", e -> {
-			DriverCommand command = FigureFactory.getCircle(DriverFeature.getDriverManager().getCurrentDriver());
-			command.execute();
-		});
+		application.addTest("Circle", e -> FigureFactory.getCircle(DriverFeature.getDriverManager().getCurrentDriver()).execute());
 
-		application.addTest("Hexagon", e -> {
-			DriverCommand command = FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 6);
-			command.execute();
-		});
+		application.addTest("Hexagon", e -> FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 6).execute());
 
-		application.addTest("Dodecagon", e -> {
-			DriverCommand command = FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 12);
-			command.execute();
-		});
+		application.addTest("Dodecagon", e -> FigureFactory.getNSidedFigure(DriverFeature.getDriverManager().getCurrentDriver(), 12).execute());
+
 	}
 
 	/**
