@@ -2,24 +2,43 @@ package edu.kis.powp.jobs2d.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.function.Consumer;
 
-import edu.kis.powp.jobs2d.Job2dDriver;
+import edu.kis.powp.command.factory.ComplexCommandFactory;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
-	private DriverManager driverManager;
-	private Consumer<Job2dDriver> figureScript;
+	public static final int TEST_FIGURES_JOE_1 = 1;
+	public static final int TEST_FIGURES_JOE_2 = 2;
+	public static final int TEST_SQUARE = 3;
+	public static final int TEST_TRIANGLE = 4;
 
-	public SelectTestFigureOptionListener(DriverManager driverManager, Consumer<Job2dDriver> testConsumer) {
+	final private DriverManager driverManager;
+	final private int testIndex;
+
+	public SelectTestFigureOptionListener(DriverManager driverManager, int testIndex) {
 		this.driverManager = driverManager;
-		this.figureScript = testConsumer;
+		this.testIndex = testIndex;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		figureScript.accept(driverManager.getCurrentDriver());
+		switch (testIndex) {
+			case TEST_FIGURES_JOE_1:
+				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+				break;
+			case TEST_FIGURES_JOE_2:
+				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+				break;
+			case TEST_SQUARE:
+				ComplexCommandFactory factory = new ComplexCommandFactory();
+				factory.drawSquare(driverManager.getCurrentDriver());
+				break;
+			case TEST_TRIANGLE:
+				ComplexCommandFactory factory2 = new ComplexCommandFactory();
+				factory2.drawTriangle(driverManager.getCurrentDriver());
+				break;
+		}
 	}
 }
