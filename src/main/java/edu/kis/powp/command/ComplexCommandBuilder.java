@@ -16,8 +16,6 @@ public class ComplexCommandBuilder {
     }
 
     public DriverCommand build() {
-        ComplexCommand complexCommand = new ComplexCommand();
-        commands.forEach(complexCommand::addCommand);
-        return complexCommand;
+        return new ComplexCommand(commands);
     }
 }
