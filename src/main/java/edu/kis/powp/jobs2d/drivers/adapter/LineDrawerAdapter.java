@@ -8,8 +8,8 @@ import edu.kis.powp.jobs2d.Job2dDriver;
  */
 public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
-    private DrawPanelController drawPanelController;
-    private ILine line;
+    private final DrawPanelController drawPanelController;
+    private final ILine line;
 
     public LineDrawerAdapter(DrawPanelController drawPanelController, ILine line) {
         this.drawPanelController = drawPanelController;

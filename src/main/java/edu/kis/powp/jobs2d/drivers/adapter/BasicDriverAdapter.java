@@ -10,7 +10,7 @@ import edu.kis.powp.jobs2d.Job2dDriver;
  */
 public class BasicDriverAdapter implements Job2dDriver {
 	private int startX = 0, startY = 0;
-	private DrawPanelController drawPanelController;
+	private final DrawPanelController drawPanelController;
 
 
 	public BasicDriverAdapter(DrawPanelController drawPanelController) {
