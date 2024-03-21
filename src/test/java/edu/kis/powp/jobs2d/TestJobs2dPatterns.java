@@ -1,18 +1,20 @@
 package edu.kis.powp.jobs2d;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
-import edu.kis.powp.jobs2d.drivers.adapter.MyAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.BasicDriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -23,10 +25,21 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+		SelectTestFigureOptionListener selectTestFigureOptionListenerJoe1 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager() , "FiguresJoe1");
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 1", selectTestFigureOptionListenerJoe1);
+
+        SelectTestFigureOptionListener selectTestFigureOptionListenerJoe2 = new SelectTestFigureOptionListener(
+                DriverFeature.getDriverManager() , "FiguresJoe2");
+
+        application.addTest("Figure Joe 2", selectTestFigureOptionListenerJoe2);
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerJane = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager() , "FiguresJane1");
+
+        application.addTest("Figures Jane", selectTestFigureOptionListenerJane);
+
 	}
 
 	/**
@@ -39,8 +52,14 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new MyAdapter();
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		Job2dDriver testDriver = new BasicDriverAdapter (DrawerFeature.getDrawerController());
+		DriverFeature.addDriver("Basic Line", testDriver);
+
+        Job2dDriver testDriver2 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getSpecialLine());
+        DriverFeature.addDriver("Special Line", testDriver2);
+
+        Job2dDriver testDriver3 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getDottedLine());
+        DriverFeature.addDriver("Dot Line", testDriver3);
 
 		DriverFeature.updateDriverInfo();
 	}
@@ -54,7 +73,7 @@ public class TestJobs2dPatterns {
 		DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
 		application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
 				new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
-		defaultDrawerWindow.setVisible(true);
+		defaultDrawerWindow.setVisible(false);
 	}
 
 	/**
