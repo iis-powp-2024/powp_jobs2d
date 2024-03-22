@@ -5,33 +5,44 @@ import java.awt.event.ActionListener;
 
 import edu.kis.powp.command.ComplexCommand;
 import edu.kis.powp.command.FigureFactory;
+import edu.kis.powp.enums.Figures;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
 	private final DriverManager driverManager;
-	int figuresJoeScriptNumber;
+	Figures figures;
 
 
-	public SelectTestFigureOptionListener(DriverManager driverManager, int figuresJoeScriptNumber) {
+	public SelectTestFigureOptionListener(DriverManager driverManager, Figures figures) {
 		this.driverManager = driverManager;
-		this.figuresJoeScriptNumber = figuresJoeScriptNumber;
+		this.figures = figures;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.figuresJoeScriptNumber == 1)
+		ComplexCommand complexCommand = null;
+		switch(this.figures)
 		{
-			FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+			case JOE_SCRIPT1:
+				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+				break;
+			case JOE_SCRIPT2:
+				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+				break;
+			case TRIANGLE:
+				complexCommand = FigureFactory.getTriangle(driverManager.getCurrentDriver(), -120, 0, 200, 100);
+				break;
+			case RECTANGLE:
+				complexCommand = FigureFactory.getRectangle(driverManager.getCurrentDriver(), -120, -150, 200, 300);
+				break;
+			case HOUSE:
+				complexCommand = FigureFactory.getHouse(driverManager.getCurrentDriver(), -120, 0, 200);
+				break;
 		}
-		else if(this.figuresJoeScriptNumber == 2)
+		if(complexCommand != null)
 		{
-			FiguresJoe.figureScript2(driverManager.getCurrentDriver());
-		}
-		else if(this.figuresJoeScriptNumber == 3)
-		{
-			ComplexCommand complexCommand = FigureFactory.getHouse(driverManager.getCurrentDriver(), -120, 0, 200);
 			complexCommand.execute();
 		}
 	}

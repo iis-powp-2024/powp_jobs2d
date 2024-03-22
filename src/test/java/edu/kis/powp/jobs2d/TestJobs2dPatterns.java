@@ -9,6 +9,7 @@ import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.enums.Figures;
 import edu.kis.powp.jobs2d.drivers.adapter.AdapterFromDriverToDrawController;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
@@ -26,15 +27,21 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1);
+				DriverFeature.getDriverManager(), Figures.JOE_SCRIPT1);
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2);
+				DriverFeature.getDriverManager(), Figures.JOE_SCRIPT2);
 		SelectTestFigureOptionListener selectTestFigureOptionListener3 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 3);
+				DriverFeature.getDriverManager(), Figures.TRIANGLE);
+		SelectTestFigureOptionListener selectTestFigureOptionListener4 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.RECTANGLE);
+		SelectTestFigureOptionListener selectTestFigureOptionListener5 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Figures.HOUSE);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
-		application.addTest("TEST", selectTestFigureOptionListener3);
+		application.addTest("Triangle figure", selectTestFigureOptionListener3);
+		application.addTest("Rectangle figure", selectTestFigureOptionListener4);
+		application.addTest("House figure", selectTestFigureOptionListener5);
 	}
 
 	/**
