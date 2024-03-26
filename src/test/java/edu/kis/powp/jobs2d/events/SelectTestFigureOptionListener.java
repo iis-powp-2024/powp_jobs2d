@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
+import edu.kis.powp.jobs2d.drivers.DriverCommand;
+import edu.kis.powp.jobs2d.drivers.command.CommandFactory;
+
 public class SelectTestFigureOptionListener implements ActionListener {
 
 	private DriverManager driverManager;
@@ -20,7 +23,12 @@ public class SelectTestFigureOptionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (figureNum == 1)
 			FiguresJoe.figureScript1(driverManager.getCurrentDriver());
-		else
+		else if (figureNum == 2)
 			FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+		else{
+			DriverCommand command = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
+			command.execute();
+		}
+
 	}
 }

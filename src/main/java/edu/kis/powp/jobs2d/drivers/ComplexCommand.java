@@ -8,14 +8,14 @@ import java.util.List;
 public class ComplexCommand implements DriverCommand {
 
     private List<DriverCommand> listCommands;
-    ComplexCommand(){
+    public ComplexCommand(){
         listCommands = new ArrayList<DriverCommand>();
     }
     public void addCommand(DriverCommand command){
         listCommands.add(command);
     }
     @Override
-    public void execute(Job2dDriver driver) {
-        listCommands.forEach(listCommands -> listCommands.execute(driver));
+    public void execute() {
+        listCommands.forEach(listCommands -> listCommands.execute());
     }
 }
