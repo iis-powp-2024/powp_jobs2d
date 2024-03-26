@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener.*;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
@@ -28,12 +29,22 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+				DriverFeature.getDriverManager(), FIGURE_SCRIPT_1);
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2);
+				DriverFeature.getDriverManager(), FIGURE_SCRIPT_2);
+		SelectTestFigureOptionListener selectTestFigureOptionListener3 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), SQUARE_SCRIPT);
+		SelectTestFigureOptionListener selectTestFigureOptionListener4 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TRIANGLE_SCRIPT);
+		SelectTestFigureOptionListener selectTestFigureOptionListener5 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), CIRCLE_SCRIPT);
+
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
 		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Square figure", selectTestFigureOptionListener3);
+		application.addTest("Triangle figure", selectTestFigureOptionListener4);
+		application.addTest("Circle figure", selectTestFigureOptionListener5);
 	}
 
 	/**
