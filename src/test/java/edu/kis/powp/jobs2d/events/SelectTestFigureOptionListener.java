@@ -25,9 +25,13 @@ public class SelectTestFigureOptionListener implements ActionListener {
 			FiguresJoe.figureScript1(driverManager.getCurrentDriver());
 		else if (figureNum == 2)
 			FiguresJoe.figureScript2(driverManager.getCurrentDriver());
-		else{
+		else if (figureNum == 3){
 			DriverCommand command = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
 			command.execute();
+		}
+		else{
+			CommandFactory.makeTriangle(driverManager.getCurrentDriver(),
+					-50, -50, 100, 69, 40, 50).execute();
 		}
 
 	}
