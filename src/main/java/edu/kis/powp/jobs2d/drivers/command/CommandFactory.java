@@ -25,4 +25,25 @@ public class CommandFactory {
         triangle.addCommand(new OperateToCommand(driver, x1, y1));
         return triangle;
     }
+
+    public static DriverCommand makeCircle(Job2dDriver driver, int centerX, int centerY, int radius) {
+        ComplexCommand circle = new ComplexCommand();
+
+        int startX = (int) (centerX + radius * Math.cos(0));
+        int startY = (int) (centerY + radius * Math.sin(0));
+        circle.addCommand(new SetPositionCommand(driver, startX, startY));
+
+        int numSegments = 100;
+        double angleIncrement = 2 * Math.PI / numSegments;
+        for (int i = 1; i <= numSegments; i++) {
+            double angle = angleIncrement * i;
+            int nextX = (int) (centerX + radius * Math.cos(angle));
+            int nextY = (int) (centerY + radius * Math.sin(angle));
+            circle.addCommand(new OperateToCommand(driver, nextX, nextY));
+        }
+
+        circle.addCommand(new OperateToCommand(driver, startX, startY));
+
+        return circle;
+    }
 }

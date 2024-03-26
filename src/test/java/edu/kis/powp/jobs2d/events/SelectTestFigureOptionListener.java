@@ -21,18 +21,29 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (figureNum == 1)
-			FiguresJoe.figureScript1(driverManager.getCurrentDriver());
-		else if (figureNum == 2)
-			FiguresJoe.figureScript2(driverManager.getCurrentDriver());
-		else if (figureNum == 3){
-			DriverCommand command = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
-			command.execute();
+		switch (figureNum) {
+			case 1:
+				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
+				break;
+			case 2:
+				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
+				break;
+			case 3:
+				DriverCommand squareCommand = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
+				squareCommand.execute();
+				break;
+			case 4:
+				DriverCommand triangleCommand = CommandFactory.makeTriangle(driverManager.getCurrentDriver(),
+						-50, -50, 100, 69, 40, 50);
+				triangleCommand.execute();
+				break;
+			default:
+				DriverCommand circleCommand = CommandFactory.makeCircle(driverManager.getCurrentDriver(),
+						50, 50, 30);
+				circleCommand.execute();
+				break;
 		}
-		else{
-			CommandFactory.makeTriangle(driverManager.getCurrentDriver(),
-					-50, -50, 100, 69, 40, 50).execute();
-		}
+
 
 	}
 }
