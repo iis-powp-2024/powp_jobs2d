@@ -38,6 +38,6 @@ public class DrawerAdapter extends DrawPanelController  implements Job2dDriver {
 
 	@Override
 	public String toString() {
-		return "Drawing adapter in work";
+		return "Buggy simulator";
 	}
 }
